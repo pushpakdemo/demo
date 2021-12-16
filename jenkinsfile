@@ -1,1 +1,48 @@
-
+pipeline{
+     agent any
+	          stages{
+			       stage('one') {
+			          steps {
+					           echo 'hi, this is pushpak'
+							 }
+					}
+			   stage('two') {
+			          steps { 
+					           input('do you wnat to proceed?')
+						   }
+					}
+               stage('three') {
+                       when {
+                                not {
+                                       branch master
+                                    }
+                    }									   
+                   steps { 
+				          echo "hello world"
+                       }
+                    }
+			    stage ('four') {
+				              parallel {
+							         stage('unit Test') { 
+									                       steps{ 
+														       echo "Running the unit Test........"
+															   }
+													}
+													stage('integration test'){
+													                   agent{
+																	         docker {
+																			          reusenode false
+																					   image 'ubuntu'
+																					   
+																			}
+																		}
+																steps	{
+																         echo 'running the integration test .......'
+																		 
+																		 }
+																}
+												}
+		}
+		}
+		}
+    }
