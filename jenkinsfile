@@ -30,8 +30,8 @@ pipeline{
 													}
 													stage('integration test'){
 													                   agent{
-															        docker {
-											                                                
+															         Docker {
+											                                             
 																        image 'ubuntu'
 									 
 																			}
