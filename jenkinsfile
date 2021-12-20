@@ -45,5 +45,23 @@ pipeline{
 																}
 												}
 		}
+		stage(five){
+		       
+                        
+						stage('Build'){
+
+							agent {
+								docker {
+									image 'ubuntu'
+									reuseNode true
+
+								}
+							}
+							steps{
+								sh 'docker-run'
+							}
+						}
+	
+		}
 		}
 		}
